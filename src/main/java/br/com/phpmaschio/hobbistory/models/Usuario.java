@@ -3,6 +3,8 @@ package br.com.phpmaschio.hobbistory.models;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import jakarta.persistence.Column;
@@ -14,6 +16,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -25,14 +28,11 @@ public class Usuario {
     private Long id;
 
     @Column(name = "login", nullable = false, length = 50)
-    @Max(value = 50, message = "login deve conter no máximo 50 caracteres")
-    @Max(value = 3, message = "login deve conter no minimo 3 caracteres")
-    @NotBlank(message = "O campo login não pode ser em branco")
-    @NotNull(message = "O campo login é obrigatório")
     private String login;
 
     @Column(name = "criado_em", nullable = false)
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @CreationTimestamp
     private LocalDateTime criadoEm;
 
     public Long getId() {
