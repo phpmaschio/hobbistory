@@ -59,16 +59,16 @@ public class Usuario {
         this.criadoEm = criadoEm;
     }
 
-    public List<PassaTempo> getPassaTempos() {
-        return passaTempos;
+    public List<Passatempo> getPassatempos() {
+        return passatempos;
     }
 
-    public void setPassaTempos(List<PassaTempo> passaTempos) {
-        this.passaTempos = passaTempos;
+    public void setPassatempos(List<Passatempo> passatempos) {
+        this.passatempos = passatempos;
     }
 
     @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-    private List<PassaTempo> passaTempos;
+    private List<Passatempo> passatempos;
 
     
 }

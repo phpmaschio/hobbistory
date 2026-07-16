@@ -1,6 +1,6 @@
 package br.com.phpmaschio.hobbistory.services;
 
-import br.com.phpmaschio.hobbistory.repositories.PassaTempoRepository;
+import br.com.phpmaschio.hobbistory.repositories.PassatempoRepository;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,28 +8,28 @@ import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 import br.com.phpmaschio.hobbistory.exceptions.NotFoundException;
-import br.com.phpmaschio.hobbistory.models.PassaTempo;
+import br.com.phpmaschio.hobbistory.models.Passatempo;
 
 @Service
-public class PassaTempoService {
-    private final PassaTempoRepository passaTempoRepository;
+public class PassatempoService {
+    private final PassatempoRepository passatempoRepository;
 
-    public PassaTempoService(PassaTempoRepository passaTempoRepository){
-        this.passaTempoRepository = passaTempoRepository;
+    public PassatempoService(PassatempoRepository passatempoRepository){
+        this.passatempoRepository = passatempoRepository;
     }
 
-    public PassaTempo registrarPassaTempo(PassaTempo passaTempo){
-        return passaTempoRepository.save(passaTempo);
+    public Passatempo registrarPassatempo(Passatempo passatempo){
+        return passatempoRepository.save(passatempo);
     }
 
-    public PassaTempo retornaTodosPassaTempos(Long id){
-        Optional<PassaTempo> passaTempo =  this.passaTempoRepository.findById(id);
-        if(passaTempo.isPresent()) return passaTempo.get();
+    public Passatempo retornaTodosPassatempos(Long id){
+        Optional<Passatempo> passatempo =  this.passatempoRepository.findById(id);
+        if(passatempo.isPresent()) return passatempo.get();
         throw new NotFoundException("Passa tempo não encontrado");
     }
 
-    public List<PassaTempo> retornaTodosPassaTempos(){
-        return this.passaTempoRepository.findAll();
+    public List<Passatempo> retornaTodosPassatempos(){
+        return this.passatempoRepository.findAll();
     }
     
 }

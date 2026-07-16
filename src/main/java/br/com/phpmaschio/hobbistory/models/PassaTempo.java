@@ -21,7 +21,7 @@ import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "passatempos")
-public class PassaTempo {
+public class Passatempo {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
@@ -33,7 +33,7 @@ public class PassaTempo {
     @NotNull(message = "O campo descrição é obrigatório")
     private String descricao;
 
-    @OneToMany(mappedBy = "passaTempo" ,fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "passatempo" ,fetch = FetchType.LAZY)
     private List<Registro> registros;
 
     @ManyToOne(fetch = FetchType.EAGER)

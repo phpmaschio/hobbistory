@@ -25,7 +25,7 @@ public class Registro {
     private Long id;
 
     @Column(name = "descricao", nullable = false, length = 100)
-    @Max(value=50, message = "descrição deve conter no máximo 100 caracteres")
+    @Max(value=100, message = "descrição deve conter no máximo 100 caracteres")
     @Min(value=3, message = "descrição deve conter no minimo 3 caracteres")
     @NotBlank(message = "O campo descrição não pode ser vazio")
     @NotNull(message = "O campo descrição é obrigatório")
@@ -40,7 +40,7 @@ public class Registro {
     private LocalDateTime criadoEm;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private PassaTempo passaTempo;
+    private Passatempo passatempo;
 
     public Long getId() {
         return id;
@@ -74,12 +74,12 @@ public class Registro {
         this.criadoEm = criadoEm;
     }
 
-    public PassaTempo getPassaTempo() {
-        return passaTempo;
+    public Passatempo getPassatempo() {
+        return passatempo;
     }
 
-    public void setPassaTempo(PassaTempo passaTempo) {
-        this.passaTempo = passaTempo;
+    public void setPassatempo(Passatempo passatempo) {
+        this.passatempo = passatempo;
     }
 
     

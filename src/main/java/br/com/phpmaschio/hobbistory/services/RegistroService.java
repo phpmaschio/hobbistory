@@ -21,8 +21,8 @@ public class RegistroService {
         return this.registroRepository.save(registro);
     }
 
-    public List<Registro> buscarRegistrosPorPassaTempo(Long passaTempoId){
-        return this.registroRepository.findByPassaTempoId(passaTempoId);
+    public List<Registro> buscarRegistrosPorPassatempo(Long passatempoId){
+        return this.registroRepository.findByPassatempoId(passatempoId);
     }
 
     public Registro buscarRegistroPorId(Long registroId){
