@@ -1,14 +1,17 @@
 package br.com.phpmaschio.hobbistory.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import br.com.phpmaschio.hobbistory.exceptions.NotFoundException;
+import br.com.phpmaschio.hobbistory.exceptions.UsuarioJaCadastradoException;
 import br.com.phpmaschio.hobbistory.models.Usuario;
 import br.com.phpmaschio.hobbistory.models.DTOs.CreateUsuarioDto;
 import br.com.phpmaschio.hobbistory.models.DTOs.ReadUsuarioDto;
 import br.com.phpmaschio.hobbistory.repositories.UsuarioRepository;
+import tools.jackson.core.type.TypeReference;
 import tools.jackson.databind.ObjectMapper;
 
 @Service
@@ -22,6 +25,9 @@ public class UsuarioService {
     }
 
     public ReadUsuarioDto registrarUsuario(CreateUsuarioDto createUsuarioDto) {
+        if (this.usuarioRepository.findByLogin(createUsuarioDto.login()).isPresent()) 
+            throw new UsuarioJaCadastradoException(String.format("Usuário %s já cadastrado",createUsuarioDto.login()));
+        
         Usuario usuario = mapper.convertValue(createUsuarioDto, Usuario.class);
         return mapper.convertValue(this.usuarioRepository.save(usuario), ReadUsuarioDto.class);
     }
@@ -32,5 +38,9 @@ public class UsuarioService {
             return usuario.get();
         }
         throw new NotFoundException("Usuario não encontrado");
+    }
+
+    public List<ReadUsuarioDto> buscarUsuarios(){
+        return mapper.convertValue(this.usuarioRepository.findAll(), new TypeReference<List<ReadUsuarioDto>>(){});
     }
 }
